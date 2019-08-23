@@ -1,0 +1,7 @@
+__title__ = 'django-pyctx'
+__description__ = 'Context package to use data between function calls, use timers and log it for Django.'
+__url__ = 'https://github.com/molcay/django-pyctx'
+__version__ = '0.1.1'
+__author__ = 'M. Olcay TERCANLI'
+__author_email__ = 'molcay@mail.com'
+__license__ = 'MIT'
