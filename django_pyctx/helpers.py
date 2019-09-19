@@ -20,7 +20,6 @@ def extract_http_information(request: HttpRequest, response: HttpResponse):
         },
         'client': {
             'ip': get_requester_ip(request),
-            'host': request.META['REMOTE_HOST'],
             'agent': request.META['HTTP_USER_AGENT'],
         },
         'status': {
@@ -38,6 +37,9 @@ def extract_http_information(request: HttpRequest, response: HttpResponse):
 
     if 'REMOTE_USER' in request.META:
         http_info['client'].update({'user': request.META['REMOTE_USER']})
+
+    if 'REMOTE_HOST' in request.META:
+        http_info['client'].update({'host': request.META['REMOTE_HOST']})
 
     return http_info
 
