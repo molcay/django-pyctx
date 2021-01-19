@@ -1,4 +1,15 @@
+from django.conf import settings
 from django.http import HttpRequest, HttpResponse
+from pyctx.context import RequestContext
+
+from django_pyctx.settings import get_settings
+
+DEFAULT_BLACK_LIST = [
+    'media', 'static', 'favicon.ico',
+    '/__debug_toolbar__/render_panel/',  # only debug mod and debug_toolbar extension active
+]
+
+django_pyctx_settings = get_settings()
 
 
 def extract_http_information(request: HttpRequest, response: HttpResponse):
@@ -63,10 +74,7 @@ def is_asset_path(request):
     :return: boolean
     """
     is_asset = False
-    black_list = [
-        'media', 'static', 'favicon.ico',
-        '/__debug_toolbar__/render_panel/',  # only debug mod and debug_toolbar extension active
-    ]
+    black_list = DEFAULT_BLACK_LIST + django_pyctx_settings.get('BLACK_LIST', [])
     for p in black_list:
         if p in request.path:
             is_asset = True
@@ -86,3 +94,12 @@ def get_requester_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+
+def get_request_context(request) -> RequestContext:
+    ctx_id_factory = django_pyctx_settings.get('CONTEXT_ID_FACTORY')
+    req_id_factory = django_pyctx_settings.get('REQUEST_ID_FACTORY')
+    extras_factory = django_pyctx_settings.get('EXTRAS_FACTORY')
+
+    return RequestContext(request, req_id_factory=req_id_factory, ctx_id_factory=ctx_id_factory,
+                          extras_factory=extras_factory)

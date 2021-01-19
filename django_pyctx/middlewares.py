@@ -1,8 +1,6 @@
 import json
 
-from pyctx.context import RequestContext
-
-from django_pyctx.helpers import extract_http_information, is_asset_path, extract_view_name
+from .helpers import extract_http_information, is_asset_path, extract_view_name, get_request_context
 
 __all__ = [
     'RequestCTXMiddleware'
@@ -20,7 +18,7 @@ class RequestCTXMiddleware:
         # Code to be executed for each request before
         # the view (and later middleware) are called.
         if not self.is_asset_path:
-            request.ctx = RequestContext(request)
+            request.ctx = get_request_context(request)
 
         response = self.get_response(request)
 
@@ -37,6 +35,6 @@ class RequestCTXMiddleware:
     def process_view(self, request, view_func, view_args, view_kwargs):
         if not self.is_asset_path:
             fn_name = extract_view_name(view_func)
-            request.ctx.set_view_name(fn_name)
+            request.ctx.view_name = fn_name
 
         return None

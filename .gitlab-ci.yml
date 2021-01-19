@@ -1,0 +1,15 @@
+image: "python:3.8"
+
+stages:
+  - Deployment
+
+deploy:
+  stage: Deployment
+  before_script:
+    - make check
+    - echo "[pypi]" >> $HOME/.pypirc
+    - echo "  username = __token__" >> $HOME/.pypirc
+    - echo "  password = $PYPI_TOKEN" >> $HOME/.pypirc
+    - cat $HOME/.pypirc
+  script:
+    - make deploy

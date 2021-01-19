@@ -1,23 +1,23 @@
 .PHONY: clean-pyc clean-build
-clean-pyc:
+clean:
+	rm -rf build dist .egg django_pyctx.egg-info
 	find . -name '*.pyc' -exec rm --force {} +
 	find . -name '*.pyo' -exec rm --force {} +
 	name '*~' -exec rm --force  {}
-clean-build:
-	rm --force --recursive build/
-	rm --force --recursive dist/
-	rm --force --recursive *.egg-info
 
 init:
-	pip install pipenv --upgrade
-	pipenv install --dev
+	pip install poetry --upgrade
+	poetry install
 
 check:
 	pip install 'twine>=1.5.0'
 	twine check dist/*
 
-publish:
-	pip install 'twine>=1.5.0'
+build:
 	python setup.py sdist bdist_wheel
+	make check
+
+publish:
+	make build
 	twine upload dist/*
-	rm -fr build dist .egg django_pyctx.egg-info
+	make clean
