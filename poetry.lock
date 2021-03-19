@@ -1,14 +1,14 @@
 [[package]]
 name = "django"
-version = "2.2.17"
+version = "2.2.18"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
 python-versions = ">=3.5"
 
 [package.dependencies]
-sqlparse = ">=0.2.2"
 pytz = "*"
+sqlparse = ">=0.2.2"
 
 [package.extras]
 argon2 = ["argon2-cffi (>=16.1.0)"]
@@ -41,12 +41,12 @@ python-versions = ">=3.5"
 [metadata]
 lock-version = "1.1"
 python-versions = ">3.7.0"
-content-hash = "074e0ca555da4ed95ef270a85db48063307ff9e2bbbf40e6e6fea7e7c049c93a"
+content-hash = "b1d417554c92abcb3eea59306b3b5e50919aa45fdb072bee3046fbfff3f139db"
 
 [metadata.files]
 django = [
-    {file = "Django-2.2.17-py3-none-any.whl", hash = "sha256:558cb27930defd9a6042133258caf797b2d1dee233959f537e3dc475cb49bd7c"},
-    {file = "Django-2.2.17.tar.gz", hash = "sha256:cf5370a4d7765a9dd6d42a7b96b53c74f9446cd38209211304b210fe0404b861"},
+    {file = "Django-2.2.18-py3-none-any.whl", hash = "sha256:0eaca08f236bf502a9773e53623f766cc3ceee6453cc41e6de1c8b80f07d2364"},
+    {file = "Django-2.2.18.tar.gz", hash = "sha256:c9c994f5e0a032cbd45089798b52e4080f4dea7241c58e3e0636c54146480bb4"},
 ]
 pyctx = [
     {file = "pyctx-0.1.7-py2.py3-none-any.whl", hash = "sha256:24a2c765e3151b1bc49f5d185bb1e408af5e444478ae289e1c2286f45ec699f8"},
