@@ -1,6 +1,6 @@
 [[package]]
 name = "django"
-version = "2.2.18"
+version = "2.2.21"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -45,8 +45,8 @@ content-hash = "b1d417554c92abcb3eea59306b3b5e50919aa45fdb072bee3046fbfff3f139db
 
 [metadata.files]
 django = [
-    {file = "Django-2.2.18-py3-none-any.whl", hash = "sha256:0eaca08f236bf502a9773e53623f766cc3ceee6453cc41e6de1c8b80f07d2364"},
-    {file = "Django-2.2.18.tar.gz", hash = "sha256:c9c994f5e0a032cbd45089798b52e4080f4dea7241c58e3e0636c54146480bb4"},
+    {file = "Django-2.2.21-py3-none-any.whl", hash = "sha256:7d8b61b6e7031a3c1a4aef29e2701849af0837f4f2062bc203077a0b46d51c2c"},
+    {file = "Django-2.2.21.tar.gz", hash = "sha256:7460cfe3781d36d1625230267dad255deb33e9229e41f21e32b33b9d536d20cd"},
 ]
 pyctx = [
     {file = "pyctx-0.1.7-py2.py3-none-any.whl", hash = "sha256:24a2c765e3151b1bc49f5d185bb1e408af5e444478ae289e1c2286f45ec699f8"},
