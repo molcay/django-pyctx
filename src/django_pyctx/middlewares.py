@@ -24,7 +24,7 @@ class RequestCTXMiddleware:
 
         # Code to be executed for each request/response after
         # the view is called.
-        if not self.is_asset_path:
+        if not self.is_asset_path and request.ctx:
             request.ctx.set_response(response)
             request.ctx.set_http_data(extract_http_information(request, response))
             dict_to_log = request.ctx.finalize()
