@@ -1,5 +1,3 @@
-import json
-
 from django.db import connection
 
 from .helpers import extract_http_information, is_asset_path, extract_view_name, get_request_context, sql_timer_enabled
