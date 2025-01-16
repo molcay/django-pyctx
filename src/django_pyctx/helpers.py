@@ -25,7 +25,6 @@ def extract_http_information(request: HttpRequest, response: HttpResponse):
             'qs': request.META['QUERY_STRING'],
             'full_path': request.get_full_path(),
             'is_secure': True if request.scheme == 'https' else False,
-            'is_xhr': request.is_ajax(),
             'headers': {k: v for k, v in request.headers.items()},
         },
         'client': {
@@ -100,5 +99,9 @@ def get_request_context(request) -> RequestContext:
     req_id_factory = django_pyctx_settings.get('REQUEST_ID_FACTORY')
     extras_factory = django_pyctx_settings.get('EXTRAS_FACTORY')
 
-    return RequestContext(request, req_id_factory=req_id_factory, ctx_id_factory=ctx_id_factory,
-                          extras_factory=extras_factory)
+    return RequestContext(
+        request,
+        req_id_factory=req_id_factory,
+        ctx_id_factory=ctx_id_factory,
+        extras_factory=extras_factory,
+    )

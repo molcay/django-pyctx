@@ -14,7 +14,6 @@ check:
 	uv run ruff check
 
 build:
-	make test
 	uv build
 
 publish:
