@@ -21,3 +21,13 @@ class QueryTimer:
             duration = time.monotonic() - start
             current_query["duration"] = duration
             self.queries.append(current_query)
+
+    def to_log_list(self):
+        return [
+            {
+                'sql': item['sql'],
+                'status': item['status'],
+                'duration': item['duration'],
+            }
+            for item in self.queries
+        ]
