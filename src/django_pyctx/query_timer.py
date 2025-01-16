@@ -2,6 +2,9 @@ import time
 
 
 class QueryTimer:
+    """
+    Taken from: https://docs.djangoproject.com/en/5.1/topics/db/instrumentation/#database-instrumentation
+    """
     def __init__(self):
         self.queries = []
 
