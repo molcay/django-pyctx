@@ -1,0 +1,40 @@
+[project]
+name = "django-pyctx"
+version = "0.3.0"
+description = "Context package to use data between function calls, use timers and log it for Django."
+readme = "README.md"
+authors = [
+    { name="M. Olcay TERCANLI", email="molcay@mail.com" },
+]
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+dependencies = ["pyctx>=0.1.10", "django>=5.1"]
+classifiers = [
+    'Framework :: Django',
+    'Environment :: Web Environment',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+    'Programming Language :: Python :: 3.14',
+]
+keywords = ['pyctx', 'django', 'django-pyctx', 'django-req-ctx', 'context']
+
+[project.urls]
+Homepage = "https://github.com/molcay/django-pyctx"
+Issues = "https://github.com/molcay/django-pyctx/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "ruff",
+]
