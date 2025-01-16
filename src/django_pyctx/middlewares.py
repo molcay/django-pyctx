@@ -2,7 +2,7 @@ import json
 
 from django.db import connection
 
-from .helpers import extract_http_information, is_asset_path, extract_view_name, get_request_context
+from .helpers import extract_http_information, is_asset_path, extract_view_name, get_request_context, sql_timer_enabled
 from .query_timer import QueryTimer
 
 __all__ = [
@@ -23,8 +23,11 @@ class RequestCTXMiddleware:
         if not self.is_asset_path:
             request.ctx = get_request_context(request)
 
-        request._sql_timer = QueryTimer()
-        with connection.execute_wrapper(request._sql_timer):
+        if sql_timer_enabled():
+            request._sql_timer = QueryTimer()
+            with connection.execute_wrapper(request._sql_timer):
+                response = self.get_response(request)
+        else:
             response = self.get_response(request)
 
         # Code to be executed for each request/response after
@@ -32,7 +35,10 @@ class RequestCTXMiddleware:
         if not self.is_asset_path and hasattr(request, 'ctx'):
             request.ctx.set_response(response)
             request.ctx.set_http_data(extract_http_information(request, response))
-            request.ctx.log.set_data('sqlTimers', request._sql_timer.to_log_list())
+
+            if sql_timer_enabled() and hasattr(request, '_sql_timer'):
+                request.ctx.log.set_data('sqlTimers', request._sql_timer.to_log_list())
+
             dict_to_log = request.ctx.finalize()
             print(json.dumps(dict_to_log))
 

@@ -10,6 +10,7 @@ DEFAULT_SETTINGS: Dict[str, Any] = {
     'CONTEXT_ID_FACTORY': helpers.default_id_factory,
     'REQUEST_ID_FACTORY': helpers.default_id_factory,
     'EXTRAS_FACTORY': helpers.default_extras_factory,
+    'ENABLE_SQL_TIMER': False,
 }
 
 

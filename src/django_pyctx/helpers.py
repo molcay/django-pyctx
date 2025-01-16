@@ -81,6 +81,10 @@ def is_asset_path(request):
     return is_asset
 
 
+def sql_timer_enabled() -> bool:
+    return django_pyctx_settings.get('ENABLE_SQL_TIMER', False)
+
+
 def get_requester_ip(request):
     """
     Get Client IP Address
