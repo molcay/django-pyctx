@@ -39,8 +39,7 @@ class RequestCTXMiddleware:
             if sql_timer_enabled() and hasattr(request, '_sql_timer'):
                 request.ctx.log.set_data('sqlTimers', request._sql_timer.to_log_list())
 
-            dict_to_log = request.ctx.finalize()
-            print(json.dumps(dict_to_log))
+            request.ctx.finalize()
 
         return response
 
