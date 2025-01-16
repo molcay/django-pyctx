@@ -1,6 +1,9 @@
 import json
 
+from django.db import connection
+
 from .helpers import extract_http_information, is_asset_path, extract_view_name, get_request_context
+from .query_timer import QueryTimer
 
 __all__ = [
     'RequestCTXMiddleware'
@@ -20,7 +23,10 @@ class RequestCTXMiddleware:
         if not self.is_asset_path:
             request.ctx = get_request_context(request)
 
-        response = self.get_response(request)
+
+        request._ql = QueryTimer()
+        with connection.execute_wrapper(request._ql):
+            response = self.get_response(request)
 
         # Code to be executed for each request/response after
         # the view is called.
@@ -29,6 +35,7 @@ class RequestCTXMiddleware:
             request.ctx.set_http_data(extract_http_information(request, response))
             dict_to_log = request.ctx.finalize()
             print(json.dumps(dict_to_log))
+            print(request._ql.queries)
 
         return response
 
